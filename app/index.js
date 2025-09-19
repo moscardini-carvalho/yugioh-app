@@ -1,6 +1,7 @@
-import { View, Text, Button, TextInput } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { useState } from "react";
+import { global } from "../styles/global";
 
 export default function Login() {
   const router = useRouter();
@@ -8,23 +9,33 @@ export default function Login() {
   const [senha, setSenha] = useState("");
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", padding: 20 }}>
-      <Text style={{ fontSize: 24, textAlign: "center", marginBottom: 20 }}>Login</Text>
+    <View style={global.container}>
+      <Text style={global.title}>Login</Text>
+
       <TextInput
+        style={global.input}
         placeholder="Usuário"
-        style={{ borderWidth: 1, marginBottom: 10, padding: 10 }}
+        placeholderTextColor="#fff"
         value={usuario}
         onChangeText={setUsuario}
       />
+
       <TextInput
+        style={global.input}
         placeholder="Senha"
+        placeholderTextColor="#fff"
         secureTextEntry
-        style={{ borderWidth: 1, marginBottom: 10, padding: 10 }}
         value={senha}
         onChangeText={setSenha}
       />
-      <Button title="Entrar" onPress={() => router.push("/cards")} />
-      <Button title="Cadastrar Usuário" onPress={() => router.push("/cadastro")} />
+
+      <TouchableOpacity style={global.button} onPress={() => router.push("/cards")}>
+        <Text style={global.buttonText}>Entrar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={global.button} onPress={() => router.push("/cadastro")}>
+        <Text style={global.buttonText}>Cadastrar Usuário</Text>
+      </TouchableOpacity>
     </View>
   );
 }
